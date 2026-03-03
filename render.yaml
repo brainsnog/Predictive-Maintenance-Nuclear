@@ -2,8 +2,15 @@ services:
   - type: web
     name: nacp-monitoring-system
     runtime: python
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
     startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
     envVars:
       - key: PYTHON_VERSION
         value: 3.9.0
+```
+
+**Step 3 — Pin pyarrow in `requirements.txt`**
+
+Add this line explicitly — this version has pre-built wheels for Python 3.9 on Linux:
+```
+pyarrow==11.0.0
